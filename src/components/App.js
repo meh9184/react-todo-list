@@ -13,21 +13,46 @@ class App extends Component {
     ]
   }
 
+  id = 1;
+  getId = () => {
+    return ++this.id;
+  }
+
   handleChange = (e) => {
     const {value} = e.target;
     this.setState({
       input: value
+    });  
+  }
+
+  handleInsert = () => {
+    const {todos, input} = this.state;
+
+    // 현재의 정보 기반으로 새로운 todo 생성
+    const newTodo = {
+      text: input,
+      done: false,
+      id: this.getId()
+    };
+
+    // 현재 todos 안에 새로 추가할 newTodo 삽입
+    this.setState({
+      todos: [...todos, newTodo],
+      input: ''
     });
-    
   }
 
   render() {
     const {input, todos} = this.state;
-    const {handleChange} = this;
+    const {handleChange, handleInsert} = this;
 
     return (
       <PageTemplate>
-        <TodoInput onChange={handleChange} value={input}/>
+        <TodoInput 
+          onChange={handleChange} 
+          onInsert={handleInsert} 
+          value={input}
+        />
         <TodoList todos={todos}/>
       </PageTemplate>
     );
