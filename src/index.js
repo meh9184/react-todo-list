@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './styles/main.scss';
 import App from './components/App';
 import rgisterServiceWorker from './registerServiceWorker';
+// import 'bootstrap/dist/css/bootstrap.css'
 
 ReactDOM.render(<App />, document.getElementById('root'));
 rgisterServiceWorker();
